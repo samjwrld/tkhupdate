@@ -43,7 +43,7 @@
 <ul class="list-inline list-inline-md">
 <li><a class="link-bd-btm" href="mailto:info@thekoncepthouse.com">info@thekoncepthouse.com</a></li>
 <li><a class="link-bd-btm" href="tel:+919888192345">9888 19 2345</a></li>
-<li><a class="link-bd-btm" href="https://forms.gle/wYEHU585KXY8Abre6">Get a quote</a></li>
+<li><a class="link-bd-btm" href="contact.html">Get a quote</a></li>
 </ul>
 </div>
 </div>
@@ -206,5 +206,29 @@
 </footer>
 <script src="js/core.min.js" defer></script>
 <script src="js/script.js" defer></script>
+<script>
+  // Fade-in on page load
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.remove("fade-out");
+  });
+
+  // Fade-out on link click
+  document.querySelectorAll('a[href]').forEach(link => {
+    if (link.getAttribute('target') === '_blank' || link.href.startsWith('tel:') || link.href.startsWith('mailto:')) return;
+
+    link.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href.startsWith('#')) return; // skip in-page anchors
+
+      e.preventDefault();
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = href;
+      }, 300);
+    });
+  });
+</script>
+
+
 </body>
 </html>
